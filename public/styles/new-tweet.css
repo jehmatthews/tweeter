@@ -1,0 +1,48 @@
+.new-tweet {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 25px;
+}
+
+.above-border {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 5px solid black;
+  font-size: large;
+  font-weight: bold;
+  font-family: 'Source Sans pro', sans-serif;
+}
+
+.above-border > textarea {
+  font-family: 'source sans pro', sans-serif;
+  color: black;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  height: 30px;
+}
+
+.under-border {
+  font-family: 'bungee';
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: large;
+}
+
+.under-border > button {
+  background-color: #4056A1;
+  color: #FFFFFF;
+  border: none;
+  font-size: large;
+}
+
+.redText {
+  color: red;
+}
