@@ -1,0 +1,74 @@
+/* creates the container box for tweets */
+#tweets-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  border: 3px solid black;
+  padding: 0.5em;
+  margin-bottom: 20px;
+}
+/* styling for avatar, name and username */
+.tweet-header {
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items: center;
+  align-content: center;
+  height: 2em;
+  font-size: 20px;
+}
+/* to separate the name from the avatar */
+.tweet-header > .name {
+  padding-left: 5px;
+}
+/* implemented to move username to far right and avoid more div's */
+.tweet-header p:nth-of-type(2) {
+  flex-grow: 5;
+}
+
+.tweet-header > .username {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  flex-direction: row;
+  color:rgb(163, 159, 159);
+}
+/* creates border between text and symbols */
+.tweet-text {
+  border-bottom: 3px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  font-size: 22px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+/* spacing and styling for footer portion of container */
+.tweet-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+/* the following implement what color will be shown when mouse hovers over symbol */
+.fa-flag:hover {
+  color: rgb(61, 61, 199);
+}
+
+.fa-retweet:hover {
+  color:rgb(179, 179, 50);
+}
+
+.fa-heart:hover {
+  color:rgb(180, 44, 44);
+}
+/* the shadowing of container box implemented here */
+#tweets-container:hover {
+  box-shadow: 5px 5px #7684b0;
+}
+
