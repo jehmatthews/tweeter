@@ -13,12 +13,16 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweets-style.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </head>
 
   <body>
@@ -37,14 +41,46 @@
       </div>
       <br>
       <div>
-        <h2>Your Name</h2>
+        <h2>Jordan Matthews</h2>
       </div>
     </header>
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-      <h1>Hello World</h1>
-      <p>This is a test</p>
+      <section class="new-tweet">
+        <form class="submit-tweet" action="/tweets" method="POST">
+          <div class="above-border">
+            <label for="tweet-text">What are you humming about?</label>
+            <textarea name="text" id="tweet-text"></textarea>
+          </div>
+          <div class="under-border">
+            <button type="submit">Tweet</button>
+            <output name="counter" class="counter" for="tweet-text">140</output>
+          </div>
+        </form>
+      </section>  
+
+      <!-- the section that will hold all tweets -->
+      <section id="tweets-container">
+
+        <div class="tweet-header">
+          <img src="/images/user.png" width="50" height="50"> <!-- brought in profile avatar from web -->
+          <p class="name">Luke</p>
+          <p class="username">@LukeSkywalker</p>
+        </div>
+
+        <p class="tweet-text">May the force be with you</p> <!-- tweets text -->
+
+        <div class="tweet-footer">
+          <p class="tweet-date">10 days ago</p>
+            <div class="flags">
+              <i class="fa-solid fa-flag"></i> <!-- different symbols for buttons -->
+              <i class="fa-sharp fa-solid fa-retweet"></i>
+              <i class="fa-sharp fa-solid fa-heart"></i>
+            </div>
+        </div>
+
+      </section>
     </main>
   </body>
 </html>
