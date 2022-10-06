@@ -1,5 +1,5 @@
 /* creates the container box for tweets */
-#tweets-container {
+.tweets-container {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -7,6 +7,16 @@
   padding: 0.5em;
   margin-bottom: 20px;
 }
+
+/* #tweets-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  border: 3px solid black;
+  padding: 0.5em;
+  margin-bottom: 20px;
+} */
+
 /* styling for avatar, name and username */
 .tweet-header {
   display: flex;
@@ -68,7 +78,7 @@
   color:rgb(180, 44, 44);
 }
 /* the shadowing of container box implemented here */
-#tweets-container:hover {
+.tweets-container:hover {
   box-shadow: 5px 5px #7684b0;
 }
 
