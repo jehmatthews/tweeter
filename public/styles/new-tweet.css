@@ -46,3 +46,13 @@
 .redText {
   color: red;
 }
+
+.error-message {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: red;
+  font-style: 'source sans pro', sans-serif;
+  margin-bottom: 5px;
+}
