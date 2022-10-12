@@ -42,45 +42,86 @@ const tweetData = {
   "created_at": 1461116232227
 }
 
+const escape = function (str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
-
-const createTweetElement = function(tweet) {
+const createTweetElement = function(data) {
+  console.log(data);
   let $tweet = $(`
-    <article class="tweets-container">
+  <article class="tweets-container">
+    
+  <div class="tweet-header">
+    <img src="${escape(data.user.avatars)}" width="50" height="50">
+    <p class="name">${escape(data.user.name)}</p>
+    <p class="username">${escape(data.user.handle)}</p>
+  </div>
   
-    <div class="tweet-header">
-      <img src="${tweet.user.avatars}" width="50" height="50">
-      <p class="name">${tweet.user.name}</p>
-      <p class="username">${tweet.user.handle}</p>
+  <p class="tweet-text">${escape(data.content.text)}</p>
+  <div class="tweet-footer">
+    <p class="tweet-date">${escape(timeago.format(data.created_at))}</p>
+    <div>
+      <i class="fa-solid fa-flag"></i>
+      <i class="fa-sharp fa-solid fa-retweet"></i>
+      <i class="fa-sharp fa-solid fa-heart"></i>
     </div>
-
-    <p class="tweet-text"${tweet.content.text}</p>
-
-    <div class="tweet-footer">
-      <p class="tweet-date">${tweet.created_at}</p>
-        <div class="flags">
-          <i class="fa-solid fa-flag"></i>
-          <i class="fa-sharp fa-solid fa-retweet"></i>
-          <i class="fa-sharp fa-solid fa-heart"></i>
-        </div>
-    </div>
+  </div>
   </article>
   `);
-  console.log($tweet);
   return $tweet;
 };
 
-const $tweet = createTweetElement(tweetData);
 
-const renderTweets = function(tweets) {
-  // $('#tweets-container').empty();
-  for (let tweet of tweets) {
-    $('#tweets-container').append(createTweetElement(tweet));
+const renderTweets = function(data) {
+  for (let tweet of data) {
+    $('#tweets-container').prepend(createTweetElement(tweet));
   };
 };
 
-$(() => {
-  renderTweets(data);
+const loadTweets = function() {
+  $.ajax("/tweets", {method: 'GET'})
+    .then((tweets) => {
+      renderTweets(tweets);
+    })
+    .catch((err) => {
+      console.log('Error', err);
+    });
+};
+
+const submitTweet = function(event) {
+  event.preventDefault();
+
+  $('.error-message').slideUp(400).text('');
+
+  if (!$(this).children().find('textarea').val()) {
+    return $('.error-message').text('⚠ Please enter text ⚠').slideDown();
+  }
+  if ($(this).children().find('textarea').val().length > 140) {
+    return $('.error-message').text('⚠ Exceeded maximum characters ⚠').slideDown();
+  }
+  
+  $.ajax('/tweets', {
+    method: 'POST',
+    data: $(this).serialize()
+  })
+    .then(function(tweet) {
+      loadTweets();
+    })
+    .catch((err) => {
+      console.log('Error', err);
+    });
+
+  $(this).children().find('textarea').val('');
+  $('.counter').text(140);
+};
+
+loadTweets();
+
+$(document).ready(function (){
+  console.log('Document ready');
+
+  $('form.submit-tweet').on('submit', submitTweet);
+
 });
-
-
