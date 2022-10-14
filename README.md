@@ -16,3 +16,11 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+
+## Screenshots 
+
+!["Screenshot of main page in full view with tweets"](https://github.com/jehmatthews/tweeter/blob/master/docs/tweeter-fullview:tweetbox.png)
+!["Screenshot of tweeter page in smaller view with tweet"](https://github.com/jehmatthews/tweeter/blob/master/docs/tweeter-smallerview.png)
+!["Screenshot of text area and counter"](https://github.com/jehmatthews/tweeter/blob/master/docs/tweeter-textarea%26counter.png)
+!["Screenshot of text area with excessive characters"](https://github.com/jehmatthews/tweeter/blob/master/docs/tweetbox-charcounter.png)
+!["Screenshot of error message"](https://github.com/jehmatthews/tweeter/blob/master/docs/tweet-errormessage.png)
