@@ -4,52 +4,13 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
-
-const tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@SirIsaac"
-    },
-  "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-  "created_at": 1461116232227
-}
-
-const escape = function (str) {
+const escape = function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-};
+}; // function to re-encode unsafe text to safe encoded text
 
-const createTweetElement = function(data) {
-  console.log(data);
+const createTweetElement = function(data) { // html code being implemented with jquery
   let $tweet = $(`
   <article class="tweets-container">
     
@@ -57,7 +18,7 @@ const createTweetElement = function(data) {
     <img src="${escape(data.user.avatars)}" width="50" height="50">
     <p class="name">${escape(data.user.name)}</p>
     <p class="username">${escape(data.user.handle)}</p>
-  </div>
+  </div> 
   
   <p class="tweet-text">${escape(data.content.text)}</p>
   <div class="tweet-footer">
@@ -69,16 +30,16 @@ const createTweetElement = function(data) {
     </div>
   </div>
   </article>
-  `);
+  `); 
   return $tweet;
-};
+}; // string literals used to bring in user information along with 'escape' function for safety
 
 
 const renderTweets = function(data) {
   for (let tweet of data) {
     $('#tweets-container').prepend(createTweetElement(tweet));
   };
-};
+}; // this function will render the tweets made and prepend newest tweets, putting them at the top of list
 
 const loadTweets = function() {
   $.ajax("/tweets", {method: 'GET'})
@@ -88,12 +49,12 @@ const loadTweets = function() {
     .catch((err) => {
       console.log('Error', err);
     });
-};
+}; // where tweets are received with a ajax GET request. receive the tweet from json file, then it renders
 
 const submitTweet = function(event) {
-  event.preventDefault();
+  event.preventDefault(); // allows event to continue propogation
 
-  $('.error-message').slideUp(400).text('');
+  $('.error-message').slideDown(400).text(''); // where errors are handled in tweet form
 
   if (!$(this).children().find('textarea').val()) {
     return $('.error-message').text('⚠ Please enter text ⚠').slideDown();
@@ -102,19 +63,19 @@ const submitTweet = function(event) {
     return $('.error-message').text('⚠ Exceeded maximum characters ⚠').slideDown();
   }
   
-  $.ajax('/tweets', {
+  $.ajax('/tweets', { // tweets are posted with this ajax post request to database
     method: 'POST',
     data: $(this).serialize()
   })
     .then(function(tweet) {
-      loadTweets();
+      loadTweets(); // uses this function to load or if error, catches it below
     })
     .catch((err) => {
       console.log('Error', err);
     });
 
-  $(this).children().find('textarea').val('');
-  $('.counter').text(140);
+  $(this).children().find('textarea').val(''); // resets text area by clearing the form after submission
+  $('.counter').text(140); // resets counter to 140 after submission
 };
 
 loadTweets();
@@ -124,4 +85,4 @@ $(document).ready(function (){
 
   $('form.submit-tweet').on('submit', submitTweet);
 
-});
+}); // function where tweet form submission occurs
