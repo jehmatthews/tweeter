@@ -43,6 +43,7 @@
   font-size: 22px;
   margin-top: 30px;
   margin-bottom: 0px;
+  overflow-wrap: break-word;
 }
 /* spacing and styling for footer portion of container */
 .tweet-footer {
