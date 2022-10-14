@@ -34,3 +34,41 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ @media (min-width: 1024px) {
+  body {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  body > header {
+    width: 30%;
+  }
+  .header {
+    margin: auto;
+    width: auto;
+  }
+  .container {
+    width: 60%;
+    float: right;
+    margin-top: 130px;
+  }
+}
+@media (max-width: 1024px) {
+  body > .nav-bar {
+    background-color: #00c990;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-denim-3.png");
+  }
+}
+@media (max-width: 570px) {
+  nav > span {
+    font-size: 20px;
+  }
+  .writeNewTweet {
+    font-size: 20px;
+  }
+  body > .nav-bar {
+    background-color: #00c990;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-denim-3.png");
+  }
+}
