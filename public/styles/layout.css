@@ -35,6 +35,7 @@ body {
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
 
+ /* responsive desig styling for when view is a min width of 1024px*/
  @media (min-width: 1024px) {
   body {
     display:flex;
@@ -57,12 +58,16 @@ body {
     margin-top: 130px;
   }
 }
+
+/* styling that combines nav bar wiht header */
 @media (max-width: 1024px) {
   body > .nav-bar {
     background-color: #00c990;
     background-image: url("https://www.transparenttextures.com/patterns/dark-denim-3.png");
   }
 }
+
+/* styling for when view becomes small, having font shrink */
 @media (max-width: 570px) {
   nav > span {
     font-size: 20px;
