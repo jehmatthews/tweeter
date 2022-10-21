@@ -4,13 +4,16 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// function to re-encode unsafe text to safe encoded text
 const escape = function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-}; // function to re-encode unsafe text to safe encoded text
+};
 
-const createTweetElement = function(data) { // html code being implemented with jquery
+// html code being implemented with jquery
+// string literals used to bring in user information along with 'escape' function for safety
+const createTweetElement = function(data) {
   let $tweet = $(`
   <article class="tweets-container">
     
@@ -32,15 +35,17 @@ const createTweetElement = function(data) { // html code being implemented with 
   </article>
   `); 
   return $tweet;
-}; // string literals used to bring in user information along with 'escape' function for safety
+};
 
-
+// this function will render the tweets made and prepend newest tweets, putting them at the top of list
 const renderTweets = function(data) {
+  $('#tweets-container').empty();
   for (let tweet of data) {
     $('#tweets-container').prepend(createTweetElement(tweet));
   };
-}; // this function will render the tweets made and prepend newest tweets, putting them at the top of list
+};
 
+// where tweets are received with a ajax GET request. receive the tweet from json file, then it renders
 const loadTweets = function() {
   $.ajax("/tweets", {method: 'GET'})
     .then((tweets) => {
@@ -49,7 +54,7 @@ const loadTweets = function() {
     .catch((err) => {
       console.log('Error', err);
     });
-}; // where tweets are received with a ajax GET request. receive the tweet from json file, then it renders
+};
 
 const submitTweet = function(event) {
   event.preventDefault(); // allows event to continue propogation
@@ -80,9 +85,10 @@ const submitTweet = function(event) {
 
 loadTweets();
 
+// function where tweet form submission occurs
 $(document).ready(function (){
   console.log('Document ready');
 
   $('form.submit-tweet').on('submit', submitTweet);
 
-}); // function where tweet form submission occurs
+});
